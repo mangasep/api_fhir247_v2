@@ -1,0 +1,79 @@
+{
+  "identifier": [
+    {
+      "use": "usual",
+      "type": {
+        "text": "string",
+        "coding": [
+          {
+            "code": "string",
+            "system": "string",
+            "display": "string"
+          }
+        ]
+      },
+      "system": "string",
+      "value": "string"
+    }
+  ],
+  "name": [
+    {
+      "use": "usual",
+      "text": "string",
+      "family": "string",
+      "given": [
+        "string"
+      ],
+      "prefix": [
+        "string"
+      ],
+      "suffix": [
+        "string"
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "string",
+      "use": "home",
+      "rank": 0
+    }
+  ],
+  "gender": "male",
+  "birthDate": "2019-07-09",
+  "address": [
+    {
+      "use": "home",
+      "type": "postal",
+      "text": "string",
+      "line": [
+        "string"
+      ],
+      "city": "string",
+      "district": "string",
+      "state": "string",
+      "postalCode": "string",
+      "country": "string"
+    }
+  ],
+  "photo": [
+    {
+      "contentType": "string",
+      "language": "string",
+      "data": "string",
+      "url": "string",
+      "size": "string",
+      "hash": "string",
+      "title": "string"
+    }
+  ],
+  "managingOrganization": {},
+  "active": true,
+  "link": [
+    {
+      "target": {},
+      "assurance": "string"
+    }
+  ]
+}

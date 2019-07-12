@@ -1,0 +1,171 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: FHIR-247
+  description: An FHIR API example that uses a methodology to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Developer
+    email: danang.kastowo@labs247.id
+    # url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://fhir.labs247.id/v2
+paths:
+  /patient-contactrelationship:
+    get:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.getPatientContactRelationships
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PatientContactRelationship'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.addPatientContactRelationship
+      requestBody:
+        description: Create a new patient contact relationship
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientContactRelationship'
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /patient-contactrelationship/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.getPatientContactRelationship
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientContactRelationship'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.updatePatientContactRelationship
+      requestBody:
+        description: Update a patient contact relationship
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientContactRelationship'
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.deletePatientContactRelationship
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+components:
+  schemas:
+    PatientContactRelationship:
+      allOf:
+        - $ref: '#/components/schemas/AdministrativeGender'
+    AdministrativeGender:
+      type: object
+      properties:
+        code:
+          type: string
+        display:
+          type: string
+        definition:
+          type: string
+    DefaultMessage:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

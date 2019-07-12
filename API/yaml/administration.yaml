@@ -1,0 +1,363 @@
+paths:
+  /Patient/{id}:
+    get:
+      tags:
+        - Administration
+      description: |
+        Detailed patient information
+      operationId: administration.getPatient
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Administration
+      description: |
+        Updated patient information
+      operationId: administration.updatePatient
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new patient
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPatient'
+      responses:
+        '200':
+          description: patient response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Administration
+      description: |
+        Delete patient information
+      operationId: administration.deletePatient
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: patient response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /Person:
+    get:
+      tags:
+        - Administration
+      description: |
+        Person list
+      operationId: administration.getPersons
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: address
+          in: query
+          description: A server defined search that may match any of the string fields in the Address, including line, city, district, state, country, postalCode, and/or text
+          required: false
+          schema:
+            type: string
+        - name: address-city
+          in: query
+          description: A city specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-country
+          in: query
+          description: A country specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-postalcode
+          in: query
+          description: A postalCode specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-state
+          in: query
+          description: A state specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-use
+          in: query
+          description: A use code specified in an address
+          required: false
+          schema:
+            type: string
+        - name: birthdate
+          in: query
+          description: The person's date of birth
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: email
+          in: query
+          description: A value in an email contact
+          required: false
+          schema:
+            type: string
+            format: email
+        - name: gender
+          in: query
+          description: Gender of the person
+          required: false
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: A person Identifier
+          required: false
+          schema:
+            type: string
+        - name: link
+          in: query
+          description: Any link has this Patient, Person, RelatedPerson or Practitioner reference
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: A server defined search that may match any of the string fields in the HumanName, including family, give, prefix, suffix, suffix, and/or text
+          required: false
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: The organization at which this person record is being managed
+          required: false
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: The Person links to this Patient
+          required: false
+          schema:
+            type: string
+        - name: practitioner
+          in: query
+          description: The Person links to this Practitioner
+          required: false
+          schema:
+            type: string
+        - name: relatedperson
+          in: query
+          description: The Person links to this RelatedPerson
+          required: false
+          schema:
+            type: string
+        - name: phone
+          in: query
+          description: A value in a phone contact
+          required: false
+          schema:
+            type: string
+        - name: telecom
+          in: query
+          description: The value in any kind of telecom details of the patient
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Persons'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Administration
+      description: |
+        Create a  new person
+      operationId: administration.addPerson
+      requestBody:
+        description: Create a new person
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPerson'
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /Person/{id}:
+    get:
+      tags:
+        - Administration
+      description: |
+        Detailed person information
+      operationId: administration.getPerson
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Administration
+      description: |
+        Updated person information
+      operationId: administration.updatePerson
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Update a person
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPerson'
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Administration
+      description: |
+        Delete person information
+      operationId: administration.deletePerson
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'

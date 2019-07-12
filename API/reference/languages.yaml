@@ -1,0 +1,166 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: FHIR-247
+  description: An FHIR API example that uses a methodology to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Developer
+    email: danang.kastowo@labs247.id
+    # url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://fhir.labs247.id/v2
+paths:
+  /languages:
+    get:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.getLanguages
+      responses:
+        '200':
+          description: languages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Languages'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.addLanguage
+      requestBody:
+        description: Create a language
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Languages'
+      responses:
+        '200':
+          description: languages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /languages/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.getLanguage
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: languages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Languages'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.updateLanguage
+      requestBody:
+        description: Update a language
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Languages'
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: languages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.deleteLanguage
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: language
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+components:
+  schemas:
+    Languages:
+      type: object
+      properties:
+        code:
+          type: string
+        display:
+          type: string
+    DefaultMessage:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

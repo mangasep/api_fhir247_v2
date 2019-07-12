@@ -1,0 +1,3746 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: FHIR-247
+  description: An FHIR API example that uses a methodology to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Developer
+    email: danang.kastowo@labs247.id
+    # url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://fhir.labs247.id/v2
+paths:
+  /Patient:
+    get:
+      tags:
+        - Administration
+      description: |
+        Patient list
+      operationId: administration.getPatients
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: active
+          in: query
+          description: Whether the patient record is active
+          required: false
+          schema:
+            type: boolean
+        - name: address
+          in: query
+          description: A server defined search that may match any of the string fields in the Address, including line, city, district, state, country, postalCode, and/or text
+          required: false
+          schema:
+            type: string
+        - name: address-city
+          in: query
+          description: A city specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-country
+          in: query
+          description: A country specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-postalcode
+          in: query
+          description: A postalCode specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-state
+          in: query
+          description: A state specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-use
+          in: query
+          description: A use code specified in an address
+          required: false
+          schema:
+            type: string
+        - name: birthdate
+          in: query
+          description: The patient's date of birth
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: death-date
+          in: query
+          description: The date of death has been provided and satisfies this search value
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: deceased
+          in: query
+          description: This patient has been marked as deceased, or as a death date entered
+          required: false
+          schema:
+            type: boolean
+        - name: email
+          in: query
+          description: A value in an email contact
+          required: false
+          schema:
+            type: string
+            format: email
+        - name: family
+          in: query
+          description: A portion of the family name of the patient
+          required: false
+          schema:
+            type: string
+        - name: gender
+          in: query
+          description: Gender of the patient
+          required: false
+          schema:
+            type: string
+        - name: general-practitioner
+          in: query
+          description: Patient's nominated general practitioner, not the organization that manages the record
+          required: false
+          schema:
+            type: string
+        - name: given
+          in: query
+          description: A portion of the given name of the patient
+          required: false
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: A patient identifier
+          required: false
+          schema:
+            type: string
+        - name: language
+          in: query
+          description: Language code (irrespective of use value)
+          required: false
+          schema:
+            type: string
+        - name: link
+          in: query
+          description: All patients linked to the given patient
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: A server defined search that may match any of the string fields in the HumanName, including family, give, prefix, suffix, suffix, and/or text
+          required: false
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: The organization that is the custodian of the patient record
+          required: false
+          schema:
+            type: string
+        - name: phone
+          in: query
+          description: A value in a phone contact
+          required: false
+          schema:
+            type: string
+        - name: telecom
+          in: query
+          description: The value in any kind of telecom details of the patient
+          required: false
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: patient response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Patients'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Administration
+      description: |
+        Create a  new patient
+      operationId: administration.addPatient
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new patient
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPatient'
+      responses:
+        '200':
+          description: patient response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /Patient/{id}:
+    get:
+      tags:
+        - Administration
+      description: |
+        Detailed patient information
+      operationId: administration.getPatient
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Administration
+      description: |
+        Updated patient information
+      operationId: administration.updatePatient
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new patient
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPatient'
+      responses:
+        '200':
+          description: patient response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Administration
+      description: |
+        Delete patient information
+      operationId: administration.deletePatient
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: patient response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /Person:
+    get:
+      tags:
+        - Administration
+      description: |
+        Person list
+      operationId: administration.getPersons
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: address
+          in: query
+          description: A server defined search that may match any of the string fields in the Address, including line, city, district, state, country, postalCode, and/or text
+          required: false
+          schema:
+            type: string
+        - name: address-city
+          in: query
+          description: A city specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-country
+          in: query
+          description: A country specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-postalcode
+          in: query
+          description: A postalCode specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-state
+          in: query
+          description: A state specified in an address
+          required: false
+          schema:
+            type: string
+        - name: address-use
+          in: query
+          description: A use code specified in an address
+          required: false
+          schema:
+            type: string
+        - name: birthdate
+          in: query
+          description: The person's date of birth
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: email
+          in: query
+          description: A value in an email contact
+          required: false
+          schema:
+            type: string
+            format: email
+        - name: gender
+          in: query
+          description: Gender of the person
+          required: false
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: A person Identifier
+          required: false
+          schema:
+            type: string
+        - name: link
+          in: query
+          description: Any link has this Patient, Person, RelatedPerson or Practitioner reference
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: A server defined search that may match any of the string fields in the HumanName, including family, give, prefix, suffix, suffix, and/or text
+          required: false
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: The organization at which this person record is being managed
+          required: false
+          schema:
+            type: string
+        - name: patient
+          in: query
+          description: The Person links to this Patient
+          required: false
+          schema:
+            type: string
+        - name: practitioner
+          in: query
+          description: The Person links to this Practitioner
+          required: false
+          schema:
+            type: string
+        - name: relatedperson
+          in: query
+          description: The Person links to this RelatedPerson
+          required: false
+          schema:
+            type: string
+        - name: phone
+          in: query
+          description: A value in a phone contact
+          required: false
+          schema:
+            type: string
+        - name: telecom
+          in: query
+          description: The value in any kind of telecom details of the patient
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Persons'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Administration
+      description: |
+        Create a  new person
+      operationId: administration.addPerson
+      requestBody:
+        description: Create a new person
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPerson'
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /Person/{id}:
+    get:
+      tags:
+        - Administration
+      description: |
+        Detailed person information
+      operationId: administration.getPerson
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Administration
+      description: |
+        Updated person information
+      operationId: administration.updatePerson
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update a person
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPerson'
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Administration
+      description: |
+        Delete person information
+      operationId: administration.deletePerson
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: person response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /administrative-gender:
+    get:
+      tags:
+        - Reference
+      description: |
+        The gender of a person used for administrative purposes.
+      operationId: reference.getAdministrativeGenders
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: administrative-gender
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdministrativeGender'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        The gender of a person used for administrative purposes.
+      operationId: reference.addAdministrativeGender
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new administrative gender
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdministrativeGender'
+
+      responses:
+        '200':
+          description: administrative-gender
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /administrative-gender/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        The gender of a person used for administrative purposes.
+      operationId: reference.getAdministrativeGender
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: administrative-gender
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdministrativeGender'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        The gender of a person used for administrative purposes.
+      operationId: reference.updateAdministrativeGender
+      requestBody:
+        description: Update a administrative gender
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdministrativeGender'
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: administrative-gender
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        The gender of a person used for administrative purposes.
+      operationId: reference.deleteAdministrativeGender
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: administrative-gender
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /marital-status:
+    get:
+      tags:
+        - Reference
+      description: |
+        This value set defines the set of codes that can be used to indicate the marital status of a person.
+      operationId: reference.getMaritalStatuses
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: marital-status
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MaritalStatus'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        This value set defines the set of codes that can be used to indicate the marital status of a person.
+      operationId: reference.addMaritalStatus
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new marital status
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaritalStatus'
+      responses:
+        '200':
+          description: marital-status
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /marital-status/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        This value set defines the set of codes that can be used to indicate the marital status of a person.
+      operationId: reference.getMaritalStatus
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: marital-status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaritalStatus'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        This value set defines the set of codes that can be used to indicate the marital status of a person.
+      operationId: reference.updateMaritalStatus
+      requestBody:
+        description: Update a marital status
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaritalStatus'
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: marital-status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        This value set defines the set of codes that can be used to indicate the marital status of a person.
+      operationId: reference.deleteMaritalStatus
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: marital-status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /patient-contactrelationship:
+    get:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.getPatientContactRelationships
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PatientContactRelationship'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.addPatientContactRelationship
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new patient contact relationship
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientContactRelationship'
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /patient-contactrelationship/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.getPatientContactRelationship
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientContactRelationship'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.updatePatientContactRelationship
+      requestBody:
+        description: Update a patient contact relationship
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientContactRelationship'
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        The nature of the relationship between the patient and the contact person.
+      operationId: reference.deletePatientContactRelationship
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: patient-contactrelationship
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /languages:
+    get:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.getLanguages
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: languages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Languages'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.addLanguage
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a language
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Languages'
+      responses:
+        '200':
+          description: languages
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /languages/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.getLanguage
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: languages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Languages'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.updateLanguage
+      requestBody:
+        description: Update a language
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Languages'
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: languages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
+      operationId: reference.deleteLanguage
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: language
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /link-type:
+    get:
+      tags:
+        - Reference
+      description: |
+        The type of link between this patient resource and another patient resource.
+      operationId: reference.getLinkTypes
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: link-type
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LinkType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        The type of link between this patient resource and another patient resource.
+      operationId: reference.addLinkType
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a link type
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkType'
+      responses:
+        '200':
+          description: link-type
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /link-type/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        The type of link between this patient resource and another patient resource.
+      operationId: reference.getLinkType
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: link-type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        The type of link between this patient resource and another patient resource.
+      operationId: reference.updateLinkType
+      requestBody:
+        description: Update a link type
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkType'
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: link-type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        The type of link between this patient resource and another patient resource.
+      operationId: reference.deleteLinkType
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: link-type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /identity-assuranceLevel:
+    get:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.getIdentityAssuranceLevels
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LinkType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.addIdentityAssuranceLevel
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a identity assurance level
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkType'
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /identity-assuranceLevel/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.getIdentityAssuranceLevel
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.updateIdentityAssuranceLevel
+      requestBody:
+        description: Update a identity assurance level
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkType'
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.deleteIdentityAssuranceLevel
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /generateToken:
+    get:
+      tags:
+        - Web API
+      description: |
+        Create a access token
+      operationId: web_api.generateToken
+      parameters:
+        - name: apikey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: apisecret
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: token response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  token:
+                    type: string
+                  expiry:
+                    type: string
+                    format: date-time
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /login:
+    post:
+      tags:
+        - Web API
+      description: |
+        Log on in Web Application
+      operationId: web_api.login
+      requestBody:
+        description: Log on in web application
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: login response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Logins'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /logout:
+    post:
+      tags:
+        - Web API
+      description: |
+        Log off from Web Application
+      operationId: web_api.logout
+      requestBody:
+        description: Log off from web application
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: logout response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+
+  /ui_users:
+    get:
+      tags:
+        - Web API
+      description: |
+        Users list
+      operationId: web_api.getUsers
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: isActive
+          in: query
+          description: Whether the user record is active
+          required: false
+          schema:
+            type: boolean
+        - name: username
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: firstname
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: lastname
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fullname
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: false
+          schema:
+            type: string
+            format: email
+        - name: isBlock
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: isLogin
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: isDeleted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: lastLogin
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: lastActivity
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: groupName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Users'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Web API
+      description: |
+        Create a  new user
+      operationId: web_api.addUser
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                      $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_users/{id}:
+    get:
+      tags:
+        - Web API
+      description: |
+        Detailed user information
+      operationId: web_api.getUser
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Updated user information
+      operationId: web_api.updateUser
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update a user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUser'
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Web API
+      description: |
+        Delete user information
+      operationId: web_api.deleteUser
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups:
+    get:
+      tags:
+        - Web API
+      description: |
+        Group list
+      operationId: web_api.getGroups
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: groupName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Groups'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Web API
+      description: |
+        Create a  new group
+      operationId: web_api.addGroup
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new group
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGroup'
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                      $ref: '#/components/schemas/Group'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups/{id}:
+    get:
+      tags:
+        - Web API
+      description: |
+        Detailed group information
+      operationId: web_api.getGroup
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Group'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Updated group information
+      operationId: web_api.updateGroup
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update a group
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGroup'
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Group'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Web API
+      description: |
+        Delete group information
+      operationId: web_api.deleteGroup
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups/{id}/members:
+    get:
+      tags:
+        - Web API
+      description: |
+        Detailed group member information
+      operationId: web_api.getMembers
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - available-user
+      responses:
+        '200':
+          description: group member response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Members'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Updated group member information
+      operationId: web_api.updateMember
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - create
+              - delete
+      requestBody:
+        description: Update a group member
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMember'
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups/{id}/privileges:
+    get:
+      tags:
+        - Web API
+      description: |
+        Group privilege information
+      operationId: web_api.getPrivileges
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Privileges'
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Web API
+      description: |
+        Create group privilege information
+      operationId: web_api.addPrivilege
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: Create a group privilege
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPrivilege'
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups/{id}/privileges/{privilege_id}:
+    get:
+      tags:
+        - Web API
+      description: |
+        Group privilege information
+      operationId: web_api.getPrivilege
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: privilege_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Privilege'
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Update group privilege information
+      operationId: web_api.updatePrivilege
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: privilege_id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: Update a group privilege
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPrivilege'
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Privilege'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Web API
+      description: |
+        Delete group privilege information
+      operationId: web_api.deletePrivilege
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: privilege_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_menu:
+    get:
+      tags:
+        - Web API
+      description: |
+        Menu list
+      operationId: web_api.getMenus
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: name
+          in: query
+          description: menu name
+          required: false
+          schema:
+            type: string
+        - name: label
+          in: query
+          description: menu label
+          required: false
+          schema:
+            type: string
+        - name: isActive
+          in: query
+          description: menu status
+          required: false
+          schema:
+            type: boolean
+
+
+      responses:
+        '200':
+          description: menu response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Menus'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Web API
+      description: |
+        Create a  new menu
+      operationId: web_api.addMenu
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new menu
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMenu'
+      responses:
+        '200':
+          description: menu response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                      $ref: '#/components/schemas/Menu'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_menu/{id}:
+    get:
+      tags:
+        - Web API
+      description: |
+        Detailed menu information
+      operationId: web_api.getMenu
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Menu'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Updated menu information
+      operationId: web_api.updateMenu
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update a menu
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMenu'
+      responses:
+        '200':
+          description: menu response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Menu'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Web API
+      description: |
+        Delete group information
+      operationId: web_api.deleteMenu
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: menu response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+components:
+  schemas:
+    Patients:
+      allOf:
+        - $ref: '#/components/schemas/Patient'
+    Patient:
+      properties:
+        resourceType:
+          type: string
+          example: Patient
+        id:
+          type: integer
+          format: int64
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+            versionId:
+              type: integer
+              format: int64
+        text:
+          type: object
+          properties:
+            status:
+              type: string
+            div:
+              type: string
+        identifier:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Identifier'
+        active:
+          type: boolean
+        name:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/HumanName'
+        telecom:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/ContactPoint'
+        gender:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        deceasedBoolean:
+          type: boolean
+        deceasedDateTime:
+          type: string
+          format: date-time
+        address:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Address'
+        maritalStatus:
+          type: object
+          properties:
+            text:
+              type: string
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  system:
+                    type: string
+                  display:
+                    type: string
+        multipleBirthBoolean:
+          type: boolean
+        multipleBirthInteger:
+          type: integer
+        photo:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Attachment'
+        contact:
+          type: array
+          items:
+            type: object
+            properties:
+              relationship:
+                type: object
+                properties:
+                  text:
+                    type: string
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        system:
+                          type: string
+                        display:
+                          type: string
+              name:
+                allOf:
+                  - $ref: '#/components/schemas/HumanName'
+              telecom:
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/components/schemas/ContactPoint'
+              address:
+                allOf:
+                  - $ref: '#/components/schemas/Address'
+              gender:
+                type: string
+              organization:
+                type: string
+        communication:
+          type: array
+          items:
+            type: object
+            properties:
+              language:
+                type: object
+                properties:
+                  text:
+                    type: string
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        system:
+                          type: string
+                        display:
+                          type: string
+              preferred:
+                type: boolean
+        generalPractitioner:
+          type: array
+          items:
+            type: object
+            properties:
+              reference:
+                type: string
+        managingOrganization:
+          type: object
+          properties:
+            reference:
+              type: string
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              other:
+                type: object
+                properties:
+                  reference:
+                    type: string
+              type:
+                type: string
+    NewPatient:
+      properties:
+        identifier:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Identifier'
+        active:
+          type: boolean
+        name:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/HumanName'
+        telecom:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/ContactPoint'
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+            - other
+            - unknown
+        birthDate:
+          type: string
+          format: date
+        deceasedBoolean:
+          type: boolean
+        deceasedDateTime:
+          type: string
+          format: date-time
+        address:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Address'
+        maritalStatus:
+          type: object
+          properties:
+            text:
+              type: string
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  system:
+                    type: string
+                  display:
+                    type: string
+        multipleBirthBoolean:
+          type: boolean
+        multipleBirthInteger:
+          type: integer
+        photo:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Attachment'
+        contact:
+          type: array
+          items:
+            type: object
+            properties:
+              relationship:
+                type: object
+                properties:
+                  text:
+                    type: string
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        system:
+                          type: string
+                        display:
+                          type: string
+              name:
+                allOf:
+                  - $ref: '#/components/schemas/HumanName'
+              telecom:
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/components/schemas/ContactPoint'
+              address:
+                allOf:
+                  - $ref: '#/components/schemas/Address'
+              gender:
+                type: string
+                enum:
+                  - male
+                  - female
+                  - other
+                  - unknown
+              organization:
+                type: string
+        communication:
+          type: array
+          items:
+            type: object
+            properties:
+              language:
+                type: object
+                properties:
+                  text:
+                    type: string
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        system:
+                          type: string
+                        display:
+                          type: string
+              preferred:
+                type: boolean
+        generalPractitioner:
+          type: array
+          items:
+            type: object
+            properties:
+              reference:
+                type: string
+        managingOrganization:
+          type: object
+          properties:
+            reference:
+              type: string
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              other:
+                type: object
+                properties:
+                  reference:
+                    type: string
+              type:
+                type: string
+    Persons:
+      allOf:
+        - $ref: '#/components/schemas/Person'
+    Person:
+      properties:
+        resourceType:
+          type: string
+          example: Person
+        id:
+          type: integer
+          format: int64
+        meta:
+          type: object
+          properties:
+            lastUpdated:
+              type: string
+              format: date-time
+            versionId:
+              type: integer
+              format: int64
+        text:
+          type: object
+          properties:
+            status:
+              type: string
+            div:
+              type: string
+        identifier:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Identifier'
+        name:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/HumanName'
+        telecom:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/ContactPoint'
+        gender:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        address:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Address'
+        photo:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Attachment'
+        managingOrganization:
+          type: object
+          properties:
+            reference:
+              type: string
+        active:
+            type: boolean
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              target:
+                type: object
+                properties:
+                  reference:
+                    type: string
+              assurance:
+                type: string
+    NewPerson:
+      properties:
+        identifier:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Identifier'
+        name:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/HumanName'
+        telecom:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/ContactPoint'
+        gender:
+          type: string
+          enum:
+            - male
+            - female
+            - other
+            - unknown
+        birthDate:
+          type: string
+          format: date
+        address:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Address'
+        photo:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Attachment'
+        managingOrganization:
+          type: object
+          properties:
+            reference:
+              type: string
+        active:
+          type: boolean
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              target:
+                type: object
+                properties:
+                  reference:
+                    type: string
+              assurance:
+                type: string
+    Identifier:
+      type: object
+      properties:
+          use:
+            type: string
+            enum:
+              - usual
+              - official
+              - temp
+              - secondary
+              - old
+          type:
+            type: object
+            properties:
+              text:
+                type: string
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    system:
+                      type: string
+                    display:
+                      type: string
+          system:
+            type: string
+          value:
+            type: string
+    HumanName:
+      type: object
+      properties:
+          use:
+            type: string
+            enum:
+              - usual
+              - official
+              - temp
+              - nickname
+              - anonymous
+              - old
+              - maiden
+          text:
+            type: string
+          family:
+            type: string
+          given:
+            type: array
+            items:
+              type: string
+          prefix:
+            type: array
+            items:
+              type: string
+          suffix:
+            type: array
+            items:
+              type: string
+    ContactPoint:
+      type: object
+      properties:
+        system:
+          type: string
+          enum:
+            - phone
+            - fax
+            - email
+            - pager
+            - url
+            - sms
+            - other
+        value:
+          type: string
+        use:
+          type: string
+          enum:
+            - home
+            - work
+            - temp
+            - old
+            - mobile
+        rank:
+          type: integer
+    Address:
+      type: object
+      properties:
+        use:
+          type: string
+          enum:
+            - home
+            - work
+            - temp
+            - old
+            - billing - purpose of this address
+        type:
+          type: string
+          enum:
+            - postal
+            - physical
+            - both
+        text:
+          type: string
+        line:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    Attachment:
+      type: object
+      properties:
+          contentType:
+            type: string
+          language:
+            type: string
+          data:
+            type: string
+            format: byte
+          url:
+            type: string
+          size:
+            type: string
+          hash:
+            type: string
+            format: byte
+          title:
+            type: string
+    AdministrativeGender:
+      type: object
+      properties:
+        code:
+          type: string
+        display:
+          type: string
+        definition:
+          type: string
+    MaritalStatus:
+      type: object
+      properties:
+        code:
+          type: string
+        system:
+          type: string
+          format: uri
+        display:
+          type: string
+        definition:
+          type: string
+    PatientContactRelationship:
+      allOf:
+        - $ref: '#/components/schemas/AdministrativeGender'
+    Languages:
+      type: object
+      properties:
+        code:
+          type: string
+        display:
+          type: string
+    LinkType:
+      allOf:
+        - $ref: '#/components/schemas/AdministrativeGender'
+    Users:
+      allOf:
+        - $ref: '#/components/schemas/User'
+    User:
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+        email:
+          type: string
+          format: email
+        lastLogin:
+          type: string
+          format: date-time
+        lastActivity:
+          type: string
+          format: date-time
+        isLogin:
+          type: boolean
+        isBlock:
+          type: string
+        firstLogin:
+          type: string
+          format: date-time
+        lastPassChange:
+          type: string
+          format: date-time
+        isActive:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        isDeleted:
+          type: boolean
+        apiKey:
+          type: string
+        apiSecret:
+          type: string
+        token:
+          type: string
+
+    NewUser:
+      properties:
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+    UpdateUser:
+      properties:
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+        isLogin:
+          type: boolean
+        isBlock:
+          type: boolean
+        isActive:
+          type: boolean
+        isDeleted:
+          type: boolean
+    Groups:
+      allOf:
+        - $ref: '#/components/schemas/Group'
+    Group:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    NewGroup:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Members:
+      allOf:
+        - $ref: '#/components/schemas/Member'
+    Member:
+      properties:
+        id:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+    NewMember:
+      properties:
+        userId:
+          type: string
+    Menus:
+      allOf:
+        - $ref: '#/components/schemas/Menu'
+    Menu:
+      properties:
+        id:
+          type: string
+        parent:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        url:
+          type: string
+        config:
+          type: string
+        icon:
+          type: string
+        sort:
+          type: integer
+        submenu:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/SubMenu'
+    SubMenu:
+      properties:
+        id:
+          type: string
+        parent:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        url:
+          type: string
+        config:
+          type: string
+        icon:
+          type: string
+        sort:
+          type: integer
+    NewMenu:
+      properties:
+        parent:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        url:
+          type: string
+        config:
+          type: string
+        icon:
+          type: string
+        sort:
+          type: integer
+    Privileges:
+      properties:
+        menu:
+          type: object
+          properties:
+            id:
+              type: string
+            parent:
+              type: string
+            label:
+              type: string
+            name:
+              type: string
+            active:
+              type: boolean
+            privileges:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  hasInsert:
+                    type: boolean
+                  hasUpdate:
+                    type: boolean
+                  hasDelete:
+                    type: boolean
+                  hasView:
+                    type: boolean
+                  hasApproval:
+                    type: boolean
+            submenu:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  parent:
+                    type: string
+                  label:
+                    type: string
+                  name:
+                    type: string
+                  active:
+                    type: boolean
+                  privileges:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      hasInsert:
+                        type: boolean
+                      hasUpdate:
+                        type: boolean
+                      hasDelete:
+                        type: boolean
+                      hasView:
+                        type: boolean
+                      hasApproval:
+                        type: boolean
+    Privilege:
+      properties:
+        id:
+          type: string
+        hasInsert:
+          type: boolean
+        hasUpdate:
+          type: boolean
+        hasDelete:
+          type: boolean
+        hasView:
+          type: boolean
+        hasApproval:
+          type: boolean
+    NewPrivilege:
+      properties:
+        hasInsert:
+          type: boolean
+        hasUpdate:
+          type: boolean
+        hasDelete:
+          type: boolean
+        hasView:
+          type: boolean
+        hasApproval:
+          type: boolean
+        menuId:
+          type: string
+    Login:
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    Logins:
+      properties:
+        user:
+          allOf:
+            - $ref: '#/components/schemas/User'
+        group:
+          allOf:
+            - $ref: '#/components/schemas/Group'
+        menu:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Menu'
+    DefaultMessage:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

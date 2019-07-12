@@ -1,0 +1,754 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: FHIR-247
+  description: An FHIR API example that uses a methodology to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Developer
+    email: danang.kastowo@labs247.id
+    # url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://fhir.labs247.id/v2
+paths:
+  /ui_groups:
+    get:
+      tags:
+        - Web API
+      description: |
+        Group list
+      operationId: web_api.getGroups
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: groupName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Groups'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Web API
+      description: |
+        Create a  new group
+      operationId: web_api.addGroup
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new group
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGroup'
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Group'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups/{id}:
+    get:
+      tags:
+        - Web API
+      description: |
+        Detailed group information
+      operationId: web_api.getGroup
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Group'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Updated group information
+      operationId: web_api.updateGroup
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update a group
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGroup'
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Group'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Web API
+      description: |
+        Delete group information
+      operationId: web_api.deleteGroup
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups/{id}/members:
+    get:
+      tags:
+        - Web API
+      description: |
+        Detailed group member information
+      operationId: web_api.getMembers
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - available-user
+      responses:
+        '200':
+          description: group member response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Members'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Updated group member information
+      operationId: web_api.updateMember
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - create
+              - delete
+      requestBody:
+        description: Update a group member
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMember'
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups/{id}/privileges:
+    get:
+      tags:
+        - Web API
+      description: |
+        Group privilege information
+      operationId: web_api.getPrivileges
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Privileges'
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Web API
+      description: |
+        Create group privilege information
+      operationId: web_api.addPrivilege
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: Create a group privilege
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPrivilege'
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_groups/{id}/privileges/{privilege_id}:
+    get:
+      tags:
+        - Web API
+      description: |
+        Group privilege information
+      operationId: web_api.getPrivilege
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: privilege_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Privilege'
+
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Update group privilege information
+      operationId: web_api.updatePrivilege
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: privilege_id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: Update a group privilege
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPrivilege'
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Privilege'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Web API
+      description: |
+        Delete group privilege information
+      operationId: web_api.deletePrivilege
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: privilege_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group privilege response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+
+components:
+  schemas:
+    Groups:
+      allOf:
+        - $ref: '#/components/schemas/Group'
+    Group:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    NewGroup:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Members:
+      allOf:
+        - $ref: '#/components/schemas/Member'
+    Member:
+      properties:
+        id:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+    NewMember:
+      properties:
+        userId:
+          type: string
+    Privileges:
+      properties:
+        menu:
+          type: object
+          properties:
+            id:
+              type: string
+            parent:
+              type: string
+            label:
+              type: string
+            name:
+              type: string
+            active:
+              type: boolean
+            privileges:
+              type: object
+              properties:
+                id:
+                  type: string
+                hasInsert:
+                  type: boolean
+                hasUpdate:
+                  type: boolean
+                hasDelete:
+                  type: boolean
+                hasView:
+                  type: boolean
+                hasApproval:
+                  type: boolean
+            submenu:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  parent:
+                    type: string
+                  label:
+                    type: string
+                  name:
+                    type: string
+                  active:
+                    type: boolean
+                  privileges:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      hasInsert:
+                        type: boolean
+                      hasUpdate:
+                        type: boolean
+                      hasDelete:
+                        type: boolean
+                      hasView:
+                        type: boolean
+                      hasApproval:
+                        type: boolean
+    Privilege:
+      properties:
+        id:
+          type: string
+        hasInsert:
+          type: boolean
+        hasUpdate:
+          type: boolean
+        hasDelete:
+          type: boolean
+        hasView:
+          type: boolean
+        hasApproval:
+          type: boolean
+    NewPrivilege:
+      properties:
+        hasInsert:
+          type: boolean
+        hasUpdate:
+          type: boolean
+        hasDelete:
+          type: boolean
+        hasView:
+          type: boolean
+        hasApproval:
+          type: boolean
+        menuId:
+          type: string
+    DefaultMessage:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

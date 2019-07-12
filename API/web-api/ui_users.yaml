@@ -1,0 +1,415 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: FHIR-247
+  description: An FHIR API example that uses a methodology to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Developer
+    email: danang.kastowo@labs247.id
+    # url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://fhir.labs247.id/v2
+paths:
+  /ui_users:
+    get:
+      tags:
+        - Web API
+      description: |
+        Users list
+      operationId: web_api.getUsers
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: isActive
+          in: query
+          description: Whether the user record is active
+          required: false
+          schema:
+            type: boolean
+        - name: username
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: firstname
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: lastname
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fullname
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: false
+          schema:
+            type: string
+            format: email
+        - name: isBlock
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: isLogin
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: isDeleted
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: lastLogin
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: lastActivity
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: groupName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Users'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Web API
+      description: |
+        Create a  new user
+      operationId: web_api.addUser
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_users/{id}:
+    get:
+      tags:
+        - Web API
+      description: |
+        Detailed user information
+      operationId: web_api.getUser
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Updated user information
+      operationId: web_api.updateUser
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update a user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUser'
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Web API
+      description: |
+        Delete user information
+      operationId: web_api.deleteUser
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: user response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+components:
+  schemas:
+    Users:
+      allOf:
+        - $ref: '#/components/schemas/User'
+    User:
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+        email:
+          type: string
+          format: email
+        lastLogin:
+          type: string
+          format: date-time
+        lastActivity:
+          type: string
+          format: date-time
+        isLogin:
+          type: boolean
+        isBlock:
+          type: string
+        firstLogin:
+          type: string
+          format: date-time
+        lastPassChange:
+          type: string
+          format: date-time
+        isActive:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        isDeleted:
+          type: boolean
+        apiKey:
+          type: string
+        apiSecret:
+          type: string
+        token:
+          type: string
+
+    NewUser:
+      properties:
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+    UpdateUser:
+      properties:
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+        isLogin:
+          type: boolean
+        isBlock:
+          type: boolean
+        isActive:
+          type: boolean
+        isDeleted:
+          type: boolean
+    DefaultMessage:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

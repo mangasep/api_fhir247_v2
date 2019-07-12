@@ -1,0 +1,267 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: FHIR-247
+  description: An FHIR API example that uses a methodology to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Developer
+    email: danang.kastowo@labs247.id
+    # url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://fhir.labs247.id/v2
+paths:
+  /generateToken:
+    get:
+      tags:
+        - Web API
+      description: |
+        Create a access token
+      operationId: web_api.generateToken
+      parameters:
+        - name: apikey
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: apisecret
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: token response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  token:
+                    type: string
+                  expiry:
+                    type: string
+                    format: date-time
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /login:
+    post:
+      tags:
+        - Web API
+      description: |
+        Log on in Web Application
+      operationId: web_api.login
+      requestBody:
+        description: Log on in web application
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: login response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Logins'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /logout:
+    post:
+      tags:
+        - Web API
+      description: |
+        Log off from Web Application
+      operationId: web_api.logout
+      requestBody:
+        description: Log off from web application
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: logout response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+components:
+  schemas:
+    Login:
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    Logins:
+      properties:
+        user:
+          allOf:
+            - $ref: '#/components/schemas/User'
+        group:
+          allOf:
+            - $ref: '#/components/schemas/Group'
+        menu:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Menu'
+    User:
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        fullname:
+          type: string
+        email:
+          type: string
+          format: email
+        lastLogin:
+          type: string
+          format: date-time
+        lastActivity:
+          type: string
+          format: date-time
+        isLogin:
+          type: boolean
+        isBlock:
+          type: string
+        firstLogin:
+          type: string
+          format: date-time
+        lastPassChange:
+          type: string
+          format: date-time
+        isActive:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        updatedDate:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        isDeleted:
+          type: boolean
+        apiKey:
+          type: string
+        apiSecret:
+          type: string
+        token:
+          type: string
+    Group:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    Menu:
+      properties:
+        id:
+          type: string
+        parent:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        url:
+          type: string
+        config:
+          type: string
+        icon:
+          type: string
+        sort:
+          type: integer
+        submenu:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/SubMenu'
+    SubMenu:
+      properties:
+        id:
+          type: string
+        parent:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        url:
+          type: string
+        config:
+          type: string
+        icon:
+          type: string
+        sort:
+          type: integer
+    DefaultMessage:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

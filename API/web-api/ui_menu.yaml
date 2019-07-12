@@ -1,0 +1,348 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: FHIR-247
+  description: An FHIR API example that uses a methodology to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Developer
+    email: danang.kastowo@labs247.id
+    # url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://fhir.labs247.id/v2
+paths:
+  /ui_menu:
+    get:
+      tags:
+        - Web API
+      description: |
+        Menu list
+      operationId: web_api.getMenus
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: minimum number to start
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: name
+          in: query
+          description: menu name
+          required: false
+          schema:
+            type: string
+        - name: label
+          in: query
+          description: menu label
+          required: false
+          schema:
+            type: string
+        - name: isActive
+          in: query
+          description: menu status
+          required: false
+          schema:
+            type: boolean
+
+
+      responses:
+        '200':
+          description: menu response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Menus'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Web API
+      description: |
+        Create a  new menu
+      operationId: web_api.addMenu
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Create a new menu
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMenu'
+      responses:
+        '200':
+          description: menu response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Menu'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /ui_menu/{id}:
+    get:
+      tags:
+        - Web API
+      description: |
+        Detailed menu information
+      operationId: web_api.getMenu
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: group response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Menu'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Web API
+      description: |
+        Updated menu information
+      operationId: web_api.updateMenu
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update a menu
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMenu'
+      responses:
+        '200':
+          description: menu response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Menu'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Web API
+      description: |
+        Delete group information
+      operationId: web_api.deleteMenu
+      parameters:
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: menuId
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: menu response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+components:
+  schemas:
+    Menus:
+      allOf:
+        - $ref: '#/components/schemas/Menu'
+    Menu:
+      properties:
+        id:
+          type: string
+        parent:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        url:
+          type: string
+        config:
+          type: string
+        icon:
+          type: string
+        sort:
+          type: integer
+        submenu:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/SubMenu'
+    SubMenu:
+      properties:
+        id:
+          type: string
+        parent:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        url:
+          type: string
+        config:
+          type: string
+        icon:
+          type: string
+        sort:
+          type: integer
+    NewMenu:
+      properties:
+        parent:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        url:
+          type: string
+        config:
+          type: string
+        icon:
+          type: string
+        sort:
+          type: integer
+    DefaultMessage:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

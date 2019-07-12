@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/administration.py" line="756" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="452bf6ec-43e9-48f4-ad2f-5d8f4008c852" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/administration.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="1450" column="17" selection-start-line="1450" selection-start-column="17" selection-end-line="1450" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+                <element signature="e#296#16288#0" />
+                <element signature="e#16314#28121#0" />
+                <element signature="e#28145#46894#0" />
+                <element signature="e#46924#65061#0" />
+                <element signature="e#65110#69861#0" />
+                <element signature="e#71084#82128#0" />
+                <element signature="e#80701#91884#0" />
+                <element signature="e#91909#99021#0" />
+                <element signature="e#100225#105433#0" />
+                <element signature="e#100710#101037#0" />
+                <element signature="e#110555#114500#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reference.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-197">
+              <caret line="889" column="9" lean-forward="true" selection-start-line="889" selection-start-column="9" selection-end-line="889" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/strestest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/version.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="857">
+              <caret line="1396" selection-start-line="1396" selection-end-line="1396" />
+              <folding>
+                <element signature="e#31#10908#0" />
+                <element signature="e#10979#23618#0" />
+                <element signature="e#23690#33041#0" />
+                <element signature="e#33090#34591#0" />
+                <element signature="e#34624#48470#0" />
+                <element signature="e#48548#57899#0" />
+                <element signature="e#72414#85567#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>delete</find>
+      <find>use</find>
+      <find>to_date</find>
+      <find>date</find>
+      <find>contact</find>
+      <find>index</find>
+      <find>genera</find>
+      <find>TO_DATE</find>
+      <find>%Y-%m-%dT%H:%M:%S.%fZ</find>
+      <find>TO_</find>
+      <find>pars</find>
+      <find>marital</find>
+      <find>marital-status</find>
+      <find>managing</find>
+      <find>MANAGING</find>
+      <find>REFERENCE</find>
+      <find>generalPractitioner</find>
+      <find>&quot;b&quot;</find>
+      <find>practitoner</find>
+      <find>practit</find>
+      <find>upper</find>
+      <find>address</find>
+      <find>deceased</find>
+      <find>GENERATE</find>
+      <find>count</find>
+      <find>ui_</find>
+      <find>or</find>
+      <find>for</find>
+      <find>Patient</find>
+      <find>checkuser</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/threading_test.py" />
+        <option value="$PROJECT_DIR$/phoenix.py" />
+        <option value="$PROJECT_DIR$/Query_Create.txt" />
+        <option value="$PROJECT_DIR$/config.py" />
+        <option value="$PROJECT_DIR$/json.json" />
+        <option value="$PROJECT_DIR$/web.api.py" />
+        <option value="$PROJECT_DIR$/web_api.py" />
+        <option value="$PROJECT_DIR$/junk-note" />
+        <option value="$PROJECT_DIR$/note" />
+        <option value="$PROJECT_DIR$/note.sql" />
+        <option value="$PROJECT_DIR$/version.py" />
+        <option value="$PROJECT_DIR$/server.yaml" />
+        <option value="$PROJECT_DIR$/yaml/Reference.yaml" />
+        <option value="$PROJECT_DIR$/yaml/web-api.yaml" />
+        <option value="$PROJECT_DIR$/administration/components.yaml" />
+        <option value="$PROJECT_DIR$/administration/person_id.yaml" />
+        <option value="$PROJECT_DIR$/administration/patient_id.yaml" />
+        <option value="$PROJECT_DIR$/requirement.txt" />
+        <option value="$PROJECT_DIR$/patient.yaml" />
+        <option value="$PROJECT_DIR$/patient2.taml" />
+        <option value="$PROJECT_DIR$/yaml/administration.yaml" />
+        <option value="$PROJECT_DIR$/patient2.yaml" />
+        <option value="$PROJECT_DIR$/administration/patient.yaml" />
+        <option value="$PROJECT_DIR$/administration/person.yaml" />
+        <option value="$PROJECT_DIR$/reference/marital-status.yaml" />
+        <option value="$PROJECT_DIR$/reference/patient-contactrelationship.yaml" />
+        <option value="$PROJECT_DIR$/example.py" />
+        <option value="$PROJECT_DIR$/reference/languages.yaml" />
+        <option value="$PROJECT_DIR$/reference/administrative-gender.yaml" />
+        <option value="$PROJECT_DIR$/reference/link-type.yaml" />
+        <option value="$PROJECT_DIR$/reference/identity-assuranceLevel.yaml" />
+        <option value="$PROJECT_DIR$/web-api/authentication.yaml" />
+        <option value="$PROJECT_DIR$/web-api/ui_users.yaml" />
+        <option value="$PROJECT_DIR$/web-api/ui_groups.yaml" />
+        <option value="$PROJECT_DIR$/web-api/ui_menu.yaml" />
+        <option value="$PROJECT_DIR$/strestest.py" />
+        <option value="$PROJECT_DIR$/testdata.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/server.py" />
+        <option value="$PROJECT_DIR$/sample.json" />
+        <option value="$PROJECT_DIR$/api-old.yaml" />
+        <option value="$PROJECT_DIR$/Secret247.py" />
+        <option value="$PROJECT_DIR$/api.yaml" />
+        <option value="$PROJECT_DIR$/administration.py" />
+        <option value="$PROJECT_DIR$/reference.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="683" />
+    <option name="height" value="768" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="API" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/administration" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="administration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="API" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/administration.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.administration" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="452bf6ec-43e9-48f4-ad2f-5d8f4008c852" name="Default Changelist" comment="" />
+      <created>1558577520014</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558577520014</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="0" width="1368" height="769" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16827998" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32973805" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3990755" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32973805" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.5392912" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32973805" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/version.py</url>
+          <line>227</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/version.py</url>
+          <line>1138</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/administration.py</url>
+          <line>72</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/administration.py</url>
+          <line>303</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/example.py</url>
+          <line>55</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/example.py</url>
+          <line>5</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/example.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/administration.py</url>
+          <line>322</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/administration.py</url>
+          <line>1674</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/administration.py</url>
+          <line>2075</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/venv/junk-note" />
+    <entry file="file://$PROJECT_DIR$/json.json" />
+    <entry file="file://$PROJECT_DIR$/Query_Create.txt" />
+    <entry file="file://$PROJECT_DIR$/note.sql" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/flask/globals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="58" column="42" selection-start-line="58" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.yaml" />
+    <entry file="file://$PROJECT_DIR$/yaml/web-api.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="1312" selection-start-line="1312" selection-end-line="1312" />
+          <folding>
+            <element signature="e#9#1060#0" />
+            <element signature="e#1063#2047#0" />
+            <element signature="e#2050#2902#0" />
+            <element signature="e#2906#7092#0" />
+            <element signature="e#7095#10232#0" />
+            <element signature="e#10235#13038#0" />
+            <element signature="e#13041#16189#0" />
+            <element signature="e#16192#19268#0" />
+            <element signature="e#19271#22066#0" />
+            <element signature="e#22069#25677#0" />
+            <element signature="e#25680#28796#0" />
+            <element signature="e#28799#31934#0" />
+            <element signature="e#31957#32020#0" />
+            <element signature="e#32025#33112#0" />
+            <element signature="e#33118#33435#0" />
+            <element signature="e#33440#33927#0" />
+            <element signature="e#33932#33997#0" />
+            <element signature="e#34002#34142#0" />
+            <element signature="e#34147#34255#0" />
+            <element signature="e#34260#34327#0" />
+            <element signature="e#34332#34516#0" />
+            <element signature="e#34521#34588#0" />
+            <element signature="e#34593#34656#0" />
+            <element signature="e#34661#35195#0" />
+            <element signature="e#35200#35609#0" />
+            <element signature="e#35614#35988#0" />
+            <element signature="e#35993#37688#0" />
+            <element signature="e#37693#37971#0" />
+            <element signature="e#37976#38261#0" />
+            <element signature="e#38266#38434#0" />
+            <element signature="e#38439#38746#0" />
+            <element signature="e#38751#38935#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administration/person_id.yaml" />
+    <entry file="file://$PROJECT_DIR$/administration/patient_id.yaml" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/openapi_spec_validator/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administration/components.yaml" />
+    <entry file="file://$PROJECT_DIR$/yaml/reference.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="789" selection-start-line="789" selection-end-line="790" selection-end-column="10" />
+          <folding>
+            <element signature="e#9#1473#0" />
+            <element signature="e#1476#3850#0" />
+            <element signature="e#3853#5349#0" />
+            <element signature="e#5352#7788#0" />
+            <element signature="e#7791#9339#0" />
+            <element signature="e#9342#11831#0" />
+            <element signature="e#11834#13252#0" />
+            <element signature="e#13255#15590#0" />
+            <element signature="e#15593#16996#0" />
+            <element signature="e#16999#19313#0" />
+            <element signature="e#19316#20874#0" />
+            <element signature="e#20877#23409#0" />
+            <element signature="e#23438#23616#0" />
+            <element signature="e#23621#23853#0" />
+            <element signature="e#23858#23958#0" />
+            <element signature="e#23963#24087#0" />
+            <element signature="e#24092#24174#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/jsonschema/validators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6840">
+          <caret line="384" selection-start-line="384" selection-end-line="384" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/patient2.taml" />
+    <entry file="file://$PROJECT_DIR$/patient2.yaml" />
+    <entry file="file://$PROJECT_DIR$/new.yaml" />
+    <entry file="file://$PROJECT_DIR$/patient.yaml" />
+    <entry file="file://$PROJECT_DIR$/yaml/administration.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="99" selection-end-column="59" />
+          <folding>
+            <element signature="e#6241#8776#0" />
+            <element signature="e#8779#14045#0" />
+            <element signature="e#14048#16234#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administration/person.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="538" column="4" selection-start-line="538" selection-start-column="4" selection-end-line="547" selection-end-column="22" />
+          <folding>
+            <element signature="e#457#5723#0" />
+            <element signature="e#5726#7912#0" />
+            <element signature="e#7940#8007#0" />
+            <element signature="e#8012#9599#0" />
+            <element signature="e#9604#10787#0" />
+            <element signature="e#10792#11533#0" />
+            <element signature="e#11538#12152#0" />
+            <element signature="e#12157#12620#0" />
+            <element signature="e#12625#13275#0" />
+            <element signature="e#13280#13676#0" />
+            <element signature="e#13535#13755#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reference/marital-status.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+          <folding>
+            <element signature="e#457#1955#0" />
+            <element signature="e#1958#4394#0" />
+            <element signature="e#4420#4696#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administration/patient.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="778" column="4" selection-start-line="778" selection-start-column="4" selection-end-line="787" selection-end-column="22" />
+          <folding>
+            <element signature="e#457#6686#0" />
+            <element signature="e#6689#9224#0" />
+            <element signature="e#9252#9321#0" />
+            <element signature="e#9326#13554#0" />
+            <element signature="e#13559#17512#0" />
+            <element signature="e#17517#18202#0" />
+            <element signature="e#18207#18769#0" />
+            <element signature="e#18774#19237#0" />
+            <element signature="e#19242#19892#0" />
+            <element signature="e#19897#20261#0" />
+            <element signature="e#20266#20450#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="34" selection-start-column="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reference/patient-contactrelationship.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="161" column="4" selection-start-line="161" selection-start-column="4" selection-end-line="170" selection-end-column="22" />
+          <folding>
+            <element signature="e#4813#4997#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reference/administrative-gender.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="150" column="4" lean-forward="true" selection-start-line="150" selection-start-column="4" selection-end-line="158" selection-end-column="22" />
+          <folding>
+            <element signature="e#4326#4504#0" />
+            <element signature="e#4509#4693#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reference/languages.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="14" selection-end-column="34" />
+          <folding>
+            <element signature="e#404#447#0" />
+            <element signature="e#457#1877#0" />
+            <element signature="e#1878#4213#0" />
+            <element signature="e#4241#4365#0" />
+            <element signature="e#4370#4590#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reference/identity-assuranceLevel.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="15" selection-end-column="6" />
+          <folding>
+            <element signature="e#404#447#0" />
+            <element signature="e#457#2017#0" />
+            <element signature="e#2020#4552#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-api/authentication.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="15" selection-end-column="6" />
+          <folding>
+            <element signature="e#404#447#0" />
+            <element signature="e#457#1508#0" />
+            <element signature="e#1511#2495#0" />
+            <element signature="e#2498#3350#0" />
+            <element signature="e#3378#3546#0" />
+            <element signature="e#3551#3858#0" />
+            <element signature="e#3863#5150#0" />
+            <element signature="e#4955#5593#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reference/link-type.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="161" column="4" lean-forward="true" selection-start-line="161" selection-start-column="4" selection-end-line="170" selection-end-column="22" />
+          <folding>
+            <element signature="e#404#447#0" />
+            <element signature="e#4205#4287#0" />
+            <element signature="e#4292#4470#0" />
+            <element signature="e#4475#4659#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-api/ui_groups.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1614">
+          <caret line="645" column="8" selection-end-line="753" selection-end-column="22" />
+          <folding>
+            <element signature="e#404#447#0" />
+            <element signature="e#15928#15993#0" />
+            <element signature="e#15998#16138#0" />
+            <element signature="e#16143#16251#0" />
+            <element signature="e#16256#17951#0" />
+            <element signature="e#17956#18234#0" />
+            <element signature="e#18211#18496#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-api/ui_menu.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="333" column="22" lean-forward="true" selection-start-line="333" selection-start-column="22" selection-end-line="333" selection-end-column="22" />
+          <folding>
+            <element signature="e#404#447#0" />
+            <element signature="e#3576#6711#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-api/ui_users.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="405" selection-start-line="405" selection-end-line="414" selection-end-column="22" />
+          <folding>
+            <element signature="e#404#447#0" />
+            <element signature="e#4646#7783#0" />
+            <element signature="e#8970#9287#0" />
+            <element signature="e#9292#9871#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testdata.py" />
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/connexion/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1404">
+          <caret line="78" column="1" selection-start-line="78" selection-start-column="1" selection-end-line="78" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api-old.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="596" selection-start-line="596" selection-end-line="601" selection-end-column="24" />
+          <folding>
+            <element signature="e#457#6686#0" />
+            <element signature="e#6689#9224#0" />
+            <element signature="e#9227#14493#0" />
+            <element signature="e#14496#16682#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/phoenixdb/connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/werkzeug/serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="986" selection-start-line="986" selection-end-line="986" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Secret247.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="542" column="4" selection-start-line="542" selection-start-column="4" selection-end-line="542" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#179#2201#0" />
+            <element signature="e#2233#3220#0" />
+            <element signature="e#3258#3703#0" />
+            <element signature="e#3735#4168#0" />
+            <element signature="e#4206#4401#0" />
+            <element signature="e#4436#5117#0" />
+            <element signature="e#7066#9071#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/threading.pyi">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///usr/lib/python3.6/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="756" column="8" selection-start-line="756" selection-start-column="8" selection-end-line="756" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-206">
+          <caret line="509" column="26" selection-start-line="509" selection-start-column="26" selection-end-line="509" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#550#698#0" />
+            <element signature="e#717#3805#0" />
+            <element signature="e#3825#6467#0" />
+            <element signature="e#6511#11481#0" />
+            <element signature="e#7457#7512#0" />
+            <element signature="e#37654#41209#0" />
+            <element signature="e#41230#44830#0" />
+            <element signature="e#44853#45707#0" />
+            <element signature="e#45733#49810#0" />
+            <element signature="e#51523#52550#0" />
+            <element signature="e#52578#55808#0" />
+            <element signature="e#61057#62771#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="568" column="4" selection-start-line="568" selection-start-column="4" selection-end-line="568" selection-end-column="4" />
+          <folding>
+            <element signature="e#457#6686#0" />
+            <element signature="e#6689#9224#0" />
+            <element signature="e#9240#13769#0" />
+            <element signature="e#13774#14493#0" />
+            <element signature="e#14514#15162#0" />
+            <element signature="e#15167#16125#0" />
+            <element signature="e#16130#16792#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/administration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="1450" column="17" selection-start-line="1450" selection-start-column="17" selection-end-line="1450" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#296#16288#0" />
+            <element signature="e#16314#28121#0" />
+            <element signature="e#28145#46894#0" />
+            <element signature="e#46924#65061#0" />
+            <element signature="e#65110#69861#0" />
+            <element signature="e#71084#82128#0" />
+            <element signature="e#80701#91884#0" />
+            <element signature="e#91909#99021#0" />
+            <element signature="e#100225#105433#0" />
+            <element signature="e#100710#101037#0" />
+            <element signature="e#110555#114500#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/threading_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-517">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding>
+            <element signature="e#19#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strestest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="857">
+          <caret line="1396" selection-start-line="1396" selection-end-line="1396" />
+          <folding>
+            <element signature="e#31#10908#0" />
+            <element signature="e#10979#23618#0" />
+            <element signature="e#23690#33041#0" />
+            <element signature="e#33090#34591#0" />
+            <element signature="e#34624#48470#0" />
+            <element signature="e#48548#57899#0" />
+            <element signature="e#72414#85567#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reference.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-197">
+          <caret line="889" column="9" lean-forward="true" selection-start-line="889" selection-start-column="9" selection-end-line="889" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

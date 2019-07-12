@@ -1,0 +1,171 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: FHIR-247
+  description: An FHIR API example that uses a methodology to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Developer
+    email: danang.kastowo@labs247.id
+    # url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://fhir.labs247.id/v2
+paths:
+  /identity-assuranceLevel:
+    get:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.getIdentityAssuranceLevels
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LinkType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    post:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.addIdentityAssuranceLevel
+      requestBody:
+        description: Create a identity assurance level
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkType'
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+  /identity-assuranceLevel/{code}:
+    get:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.getIdentityAssuranceLevel
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    put:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.updateIdentityAssuranceLevel
+      requestBody:
+        description: Update a identity assurance level
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkType'
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+    delete:
+      tags:
+        - Reference
+      description: |
+        The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+      operationId: reference.deleteIdentityAssuranceLevel
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: identity-assurance-level
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultMessage'
+components:
+  schemas:
+    LinkType:
+      allOf:
+        - $ref: '#/components/schemas/AdministrativeGender'
+    AdministrativeGender:
+      type: object
+      properties:
+        code:
+          type: string
+        display:
+          type: string
+        definition:
+          type: string
+    DefaultMessage:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
